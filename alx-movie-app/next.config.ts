@@ -1,19 +1,21 @@
-// export default nextConfig;
+import withPWA from '@ducanh2912/next-pwa'
 
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+const nextConfig = {
   reactStrictMode: true,
+
+  // ✅ Explicitly disable Turbopack
+  turbopack: {},
+
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "m.media-amazon.com",
-        pathname: "/**",
+        protocol: 'https',
+        hostname: '**',
       },
     ],
-    unoptimized: process.env.NODE_ENV === "development",
   },
-};
+}
 
-export default nextConfig;
+export default withPWA({
+  dest: 'public',
+})(nextConfig)
